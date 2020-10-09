@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fair Trade Coffee</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Fair Trade Coffee</h1>
+        <hr>
+        <p style="text-align: center;">Prove the authenticity of coffee using the Ethereum blockchain.</p>
+    </div>
+
+    <div id="ftc-harvest">
+        <h3>Query Product</h3>
+        <div class="form-group">
+            UPC&nbsp;
+            <input type="number" id="upc" name="upc" value="1"/><br><br>
+            <button class="btn-fetchOne" id="button" type="button" data-id="9">Fetch Data</button>
+        </div>
+        <div class=form-break></div>
+        <h3>Current Owner</h3>
+        <p id="ownerID"></p>
+        <div class=form-break></div>
+        <h3>Supply Chain Touchpoints</h3>
+        Farmer: <p id="farmerID"></p>
+        Distributor: <p id="distributorID"></p>
+        Retailer: <p id="retailerID"></p>
+        Consumer: <p id="consumerID"></p>
+        <div class=form-break></div>
+        <h3>Farmer Actions</h3>
+        <div class="form-group">
+            Farm Name<br>
+            <input type="text" id="originFarmName" name="originFarmName" value="John Doe"/><br>
+            Farm Information<br>
+            <input type="text" id="originFarmInformation" name="originFarmInformation" value="Yarra Valley"/><br>
+            Farm Latitude<br>
+            <input type="number" id="originFarmLatitude" name="originFarmLatitude" value="-38.239770"/><br>
+            Farm Longitude<br>
+            <input type="number"     id="originFarmLongitude" name="originFarmLongitude" value="144.341490"/><br>
+            <br>
+            Product Notes<br>
+            <input type="text" id="productNotes" name="productNotes" value="Best beans for Espresso"/><br>
+            Product Price<br>
+            <input type="number" id="productPrice" name="productPrice" value="1000000"/>&nbsp;wei<br>
+            <br>
+            <button class="btn-harvest" id="button" type="button" data-id="1">Harvest</button>
+        </div>
+        <div class="form-group">
+            <button class="btn-process" id="button" type="button" data-id="2">Process</button>
+            <button class="btn-pack" id="button" type="button" data-id="3">Pack</button>
+            <button class="btn-forsale" id="button" type="button" data-id="4">ForSale</button>
+        </div>
+        <div class=form-break></div>
+        <h3>Distributor Actions</h3>
+        <div class="form-group">
+            <button class="btn-buy" id="button" type="button" data-id="5">Buy</button>
+            <button class="btn-ship" id="button" type="button" data-id="6">Ship</button>
+        </div>
+        <div class=form-break></div>
+        <h3>Retailer Actions</h3>
+        <div class="form-group">
+            <button class="btn-receive" id="button" type="button" data-id="7">Receive</button>
+        </div>
+        <div class=form-break></div>
+        <h3>Consumer Actions</h3>
+        <div class="form-group">
+            <button class="btn-purchase" id="button" type="button" data-id="8">Purchase</button>
+        </div>
+       <hr>
+    </div>
+
+    <h3>Transaction History<span id="ftc-history"></span></h3>
+    <div>
+        <ul id="ftc-events">
+            <!-- Events will appear here from app.js -->
+        </ul>
+        <br>
+        <hr>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
