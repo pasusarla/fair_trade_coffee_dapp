@@ -243,7 +243,7 @@ contract SupplyChain is Ownable, FarmerRole, DistributorRole, RetailerRole, Cons
     
     // Transfer money to farmer
     items[_upc].originFarmerID.transfer(items[_upc].productPrice);
-//    transferOwnership(msg.sender);
+    _transferOwnership(msg.sender);
     
     // emit the appropriate event
     emit Sold(_upc);
@@ -273,7 +273,7 @@ contract SupplyChain is Ownable, FarmerRole, DistributorRole, RetailerRole, Cons
     
     // Transfer money to farmer
     items[_upc].distributorID.transfer(items[_upc].productPrice);
-//    transferOwnership(msg.sender);
+    _transferOwnership(msg.sender);
     
     // Emit the appropriate event
     emit Received(_upc);
@@ -291,7 +291,7 @@ contract SupplyChain is Ownable, FarmerRole, DistributorRole, RetailerRole, Cons
     
     // Transfer money to farmer
     items[_upc].retailerID.transfer(items[_upc].productPrice);
-//    transferOwnership(msg.sender);
+    _transferOwnership(msg.sender);
     
     // Emit the appropriate event
     emit Purchased(_upc);

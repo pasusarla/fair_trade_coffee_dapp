@@ -21,7 +21,7 @@ contract Ownable {
 
     /// Define a function modifier 'onlyOwner'
     modifier onlyOwner() {
-        require(isOwner());
+        require(isOwner(), "Non-owner calling contract function in question!");
         _;
     }
 
