@@ -45,16 +45,23 @@ contract('SupplyChain', function(accounts) {
     it("Testing smart contract function harvestItem() that allows a farmer to harvest coffee", async() => {
         const supplyChain = await SupplyChain.deployed();
         await supplyChain.addFarmer(originFarmerID);
-        await supplyChain.addDistributor(distributorID);
-        await supplyChain.addRetailer(retailerID);
-        await supplyChain.addConsumer(consumerID);
         
         // Declare and Initialize a variable for event
-        var eventEmitted = false;
+        var farmerAddedEventEmitted = false;
+        var stateChangeEventEmitted = false;
+        var ownershipTransferEventEmitted = false;
+
+        var farmerAddedEvent = await supplyChain.FarmerAdded((err, res) => {
+            farmerAddedEventEmitted = true;
+        });
         
         // Watch the emitted event Harvested()
-        var event = await supplyChain.Harvested((err, res) => {
-            eventEmitted = true;
+        var stateChangeEvent = await supplyChain.Harvested((err, res) => {
+            stateChangeEventEmitted = true;
+        });
+
+        var ownershipTransferEvent = await supplyChain.TransferOwnership((err, res) => {
+            ownershipTransferEventEmitted = true;
         });
 
         // Mark an item as Harvested by calling function harvestItem()
@@ -84,7 +91,9 @@ contract('SupplyChain', function(accounts) {
         assert.equal(resultBufferTwo[7], emptyAddress, 'Error: Invalid retailerID');
         assert.equal(resultBufferTwo[8], emptyAddress, 'Error: Invalid consumerID');
 
-        assert.equal(eventEmitted, true, 'Invalid event emitted');
+        assert.equal(farmerAddedEventEmitted, true, 'Harvester not properly recognised as farmer');
+        assert.equal(stateChangeEventEmitted, true, 'Invalid state change event emitted');
+        assert.equal(ownershipTransferEventEmitted, true, 'Invalid ownership transfer event emitted');
     });
 
     // 2nd Test
@@ -217,13 +226,24 @@ contract('SupplyChain', function(accounts) {
     // 5th Test
     it("Testing smart contract function buyItem() that allows a distributor to buy coffee", async() => {
         const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addDistributor(distributorID);
         
         // Declare and Initialize a variable for event
-        var eventEmitted = false;
-        
+        var distributorAddedEventEmitted = false;
+        var stateChangeEventEmitted = false;
+        var ownershipTransferEventEmitted = false;
+
+        var distributedAddedEvent = await supplyChain.DistributorAdded((err, res) => {
+            distributorAddedEventEmitted = true;
+        });
+
         // Watch the emitted event Sold()
-        var event = await supplyChain.Sold((err, res) => {
-            eventEmitted = true;
+        var stateChangeEvent = await supplyChain.Sold((err, res) => {
+            stateChangeEventEmitted = true;
+        });
+
+        var ownershipTransferEvent = await supplyChain.TransferOwnership((err, res) => {
+            ownershipTransferEventEmitted = true;
         });
 
         // Mark an item as Sold by calling function buyItem()
@@ -253,7 +273,9 @@ contract('SupplyChain', function(accounts) {
         assert.equal(resultBufferTwo[7], emptyAddress, 'Error: Invalid retailerID');
         assert.equal(resultBufferTwo[8], emptyAddress, 'Error: Invalid consumerID');
 
-        assert.equal(eventEmitted, true, 'Invalid event emitted');
+        assert.equal(distributorAddedEventEmitted, true, 'Distributor not added properly in the supply chain');
+        assert.equal(stateChangeEventEmitted, true, 'Invalid state change event emitted');
+        assert.equal(ownershipTransferEventEmitted, true, 'Invalid ownership transfer event emitted');
     });
 
     // 6th Test
@@ -301,13 +323,24 @@ contract('SupplyChain', function(accounts) {
     // 7th Test
     it("Testing smart contract function receiveItem() that allows a retailer to mark coffee received", async() => {
         const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addRetailer(retailerID);
         
         // Declare and Initialize a variable for event
-        var eventEmitted = false;
+        var retailerAddedEventEmitted = false;
+        var stateChangeEventEmitted = false;
+        var ownershipTransferEventEmitted = false;
+
+        var retailerAddedEvent = await supplyChain.RetailerAdded((err, res) => {
+            retailerAddedEventEmitted = true;
+        });
         
         // Watch the emitted event Received()
-        var event = await supplyChain.Received((err, res) => {
-            eventEmitted = true;
+        var stateChangeEvent = await supplyChain.Received((err, res) => {
+            stateChangeEventEmitted = true;
+        });
+
+        var ownershipTransferEvent = await supplyChain.TransferOwnership((err, res) => {
+            ownershipTransferEventEmitted = true;
         });
 
         // Mark an item as Sold by calling function receiveItem()
@@ -337,19 +370,32 @@ contract('SupplyChain', function(accounts) {
         assert.equal(resultBufferTwo[7], retailerID, 'Error: Invalid retailerID');
         assert.equal(resultBufferTwo[8], emptyAddress, 'Error: Invalid consumerID');
 
-        assert.equal(eventEmitted, true, 'Invalid event emitted');
+        assert.equal(retailerAddedEventEmitted, true, 'Retailer not added properly in the supply chain');
+        assert.equal(stateChangeEventEmitted, true, 'Invalid state change event emitted');
+        assert.equal(ownershipTransferEventEmitted, true, 'Invalid ownership transfer event emitted');
     });
 
     // 8th Test
     it("Testing smart contract function purchaseItem() that allows a consumer to purchase coffee", async() => {
         const supplyChain = await SupplyChain.deployed();
+        await supplyChain.addConsumer(consumerID);
         
         // Declare and Initialize a variable for event
-        var eventEmitted = false;
-        
+        var consumerAddedEventEmitted = false;
+        var stateChangeEventEmitted = false;
+        var ownershipTransferEventEmitted = false;
+
+        var consumerAddedEvent = await supplyChain.ConsumerAdded((err, res) => {
+            consumerAddedEventEmitted = true;
+        });
+
         // Watch the emitted event Purchased()
-        var event = await supplyChain.Purchased((err, res) => {
-            eventEmitted = true;
+        var stateChangeEent = await supplyChain.Purchased((err, res) => {
+            stateChangeEventEmitted = true;
+        });
+
+        var ownershipTransferEvent = await supplyChain.TransferOwnership((err, res) => {
+            ownershipTransferEventEmitted = true;
         });
 
         // Mark an item as Sold by calling function buyItem()
@@ -378,7 +424,10 @@ contract('SupplyChain', function(accounts) {
         assert.equal(resultBufferTwo[6], distributorID, 'Error: Invalid distributorID');
         assert.equal(resultBufferTwo[7], retailerID, 'Error: Invalid retailerID');
         assert.equal(resultBufferTwo[8], consumerID, 'Error: Invalid consumerID');
-        assert.equal(eventEmitted, true, 'Invalid event emitted');
+
+        assert.equal(consumerAddedEventEmitted, true, 'Consumer not properly identified in the supply chain');
+        assert.equal(stateChangeEventEmitted, true, 'Invalid state change event emitted');
+        assert.equal(ownershipTransferEventEmitted, true, 'Invalid ownership transfer event emitted');
     });
 
     // 9th Test
