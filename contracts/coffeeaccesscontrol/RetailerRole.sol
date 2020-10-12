@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.24;
+pragma solidity 0.6.12;
 
 // Import the library 'Roles'
 import "./Roles.sol";
@@ -32,12 +32,12 @@ contract RetailerRole {
   }
 
   // Define a function 'addRetailer' that adds this role
-  function addRetailer(address account) public onlyRetailer {
+  function addRetailer(address account) external onlyRetailer {
     _addRetailer(account);
   }
 
   // Define a function 'renounceRetailer' to renounce this role
-  function renounceRetailer() public {
+  function renounceRetailer() external {
     _removeRetailer(msg.sender);
   }
 

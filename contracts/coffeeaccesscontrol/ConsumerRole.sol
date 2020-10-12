@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.24;
+pragma solidity 0.6.12;
 
 // Import the library 'Roles'
 import "./Roles.sol";
@@ -32,12 +32,12 @@ contract ConsumerRole {
   }
 
   // Define a function 'addConsumer' that adds this role
-  function addConsumer(address account) public onlyConsumer {
+  function addConsumer(address account) external onlyConsumer {
     _addConsumer(account);
   }
 
   // Define a function 'renounceConsumer' to renounce this role
-  function renounceConsumer() public {
+  function renounceConsumer() external {
     _removeConsumer(msg.sender);
   }
 

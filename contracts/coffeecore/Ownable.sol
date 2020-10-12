@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.24;
+pragma solidity 0.6.12;
 
 /// Provides basic authorization control
 contract Ownable {
@@ -15,7 +15,7 @@ contract Ownable {
     }
 
     /// Look up the address of the owner
-    function owner() public view returns (address) {
+    function owner() external view returns (address) {
         return origOwner;
     }
 
@@ -31,13 +31,13 @@ contract Ownable {
     }
 
     /// Define a function to renounce ownerhip
-    function renounceOwnership() public onlyOwner {
+    function renounceOwnership() external onlyOwner {
         emit TransferOwnership(origOwner, address(0));
         origOwner = address(0);
     }
 
     /// Define a public function to transfer ownership
-    function transferOwnership(address newOwner) public onlyOwner {
+    function transferOwnership(address newOwner) external onlyOwner {
         _transferOwnership(newOwner);
     }
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.24;
+pragma solidity 0.6.12;
 
 // Import the library 'Roles'
 import "./Roles.sol";
@@ -32,12 +32,12 @@ contract FarmerRole {
   }
 
   // Define a function 'addFarmer' that adds this role
-  function addFarmer(address account) public onlyFarmer {
+  function addFarmer(address account) external onlyFarmer {
     _addFarmer(account);
   }
 
   // Define a function 'renounceFarmer' to renounce this role
-  function renounceFarmer() public {
+  function renounceFarmer() external {
     _removeFarmer(msg.sender);
   }
 
