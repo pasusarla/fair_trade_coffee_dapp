@@ -187,6 +187,7 @@ contract SupplyChain is Ownable, FarmerRole, DistributorRole, RetailerRole, Cons
                             address(0), address(0)
                            );
     items[_upc] = item;
+    _transferOwnership(msg.sender);
     
     // Increment sku
     sku = sku + 1;
