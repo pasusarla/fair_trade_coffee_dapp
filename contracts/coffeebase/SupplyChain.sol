@@ -174,6 +174,13 @@ contract SupplyChain is Ownable, FarmerRole, DistributorRole, RetailerRole, Cons
 */
   }
 
+  function addParticipants(address farmer, address distributor, address retailer, address consumer) external onlyOwner() {
+    _addFarmer(farmer);
+    _addDistributor(distributor);
+    _addRetailer(retailer);
+    _addConsumer(consumer);
+  }
+
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
   function harvestItem(uint _upc, address payable _originFarmerID, string memory _originFarmName,
                        string memory _originFarmInformation, string memory _originFarmLatitude,
@@ -236,7 +243,7 @@ contract SupplyChain is Ownable, FarmerRole, DistributorRole, RetailerRole, Cons
   // Call modifier to check if upc has passed previous supply chain stage
   // Call modifer to check if buyer has paid enough
   // Call modifer to send any excess ether back to buyer
-  function buyItem(uint _upc) external payable forSale(_upc) paidEnough(items[_upc].productPrice) onlyDistributor() checkValue(_upc) {
+  function buyItem(uint _upc) external payable forSale(_upc) paidEnough(items[_upc].productPrice) checkValue(_upc) onlyDistributor() {
     // Update the appropriate fields - ownerID, distributorID, itemState
     items[_upc].itemState = State.Sold;
     items[_upc].distributorID = msg.sender;
