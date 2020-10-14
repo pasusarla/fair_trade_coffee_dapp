@@ -31,15 +31,18 @@ lite-server is used to run the client-facing web app.
 web3 is self-explanatory.
 
 ## Token Identification
-Ropsten contract address: https://ropsten.etherscan.io/address/0x80821b4e459f5fc5de501198827a039dd743a916
-Ropsten contract creation transaction: https://ropsten.etherscan.io/tx/0x7505bbfa39d17c7414d24f751b6b173a3f6861cf2f87a51af6be4b55685babee
+The Ropsten test network was used instead of the Rinkeby test network, simply because of how painful Rinkeby makes it to get test Ether, compared to Ropsten's absolutely straight-forward faucet.
+
+Ropsten contract address: https://ropsten.etherscan.io/address/0x2476e91aee8f48f07d492358e29d53f9a56e647a
+Ropsten contract creation transaction: https://ropsten.etherscan.io/tx/0x4c694d6784a67d678d70b14d8ac8fa1adafd675ac73f68ccf1cb6b8d9104685e
 
 Entire lifecycle for UPC 2:
-Harvested - https://ropsten.etherscan.io/tx/0x92f16ea4d86b0db035a909482241367cd06d59711a96dca4f19019c8c87c502a
-Processed - https://ropsten.etherscan.io/tx/0x3ea5b9640833c92c2256911ff76a4aa27df79aa9b2b6f0670990739b994cd461
-Packed - https://ropsten.etherscan.io/tx/0x15dade0520c2ffda3d41e7e48a067aa33222df6982cc3ca2c4a97b0c2a29c2d9
-ForSale - https://ropsten.etherscan.io/tx/0x1cbcbb4835edbe86d8c1c599d6703d0bb85b64cd530ee418537c482c2e9c00a6
-Sold - https://ropsten.etherscan.io/tx/0x4538abd1c75864a953069564a7e4a831ffd359cce22357d9e99a4f6d5a596409
-Shipped - https://ropsten.etherscan.io/tx/0x9736b737937e95cbc58a834696035f6d27b626ac26bb90e44d4a62c1853477cc
-Received - https://ropsten.etherscan.io/tx/0xa6b15fa39a6c28b860a4ed5a08faffe4bb832251bbecc1bf5d6ae0f3d05ab1b8
-Purchased - https://ropsten.etherscan.io/tx/0x3343f4df3436aac83a867695b54f0a20949fe7fb694a4a9b4da1c9bff71e7c20
+Create Participants - https://ropsten.etherscan.io/tx/0x59c750308427745551953b423a4a9e50e26411fa4dfe3bd28cd4df020cc06014 (events emitted: FarmerAdded, DistributorAdded, RetailerAdded, ConsumerAdded)
+Harvested - https://ropsten.etherscan.io/tx/0xc72a27618c5027f5a1e45232fc3e318ccdf0a3a14fc606b5eec046c2591dd992 (addiitonal event emitted: TransferOwnership)
+Processed - https://ropsten.etherscan.io/tx/0x9442f730f1d7313627c5ad5e3da0630fad9b8f7ff9cd9c6ae249b5132a457dbf
+Packed - https://ropsten.etherscan.io/tx/0x05cf8b4342b6e7b6ad923113eb36965e11c7e9eb13ef9787839be75cdb25eced
+ForSale - https://ropsten.etherscan.io/tx/0x0fcc807a773a7235159233d8f5ca7014b6d08374f7594b99b4a79c20e15d9036
+Sold - https://ropsten.etherscan.io/tx/0x33f914875f644f8ed3eeb30cb8968aae198d42e92770d769bb6a31d36916cf8a (addiitonal event emitted: TransferOwnership)
+Shipped - https://ropsten.etherscan.io/tx/0x07599357cba96a55c0357fd80c617a0b860a9fa527f4a403c86ede6b51ef45b4
+Received - https://ropsten.etherscan.io/tx/0x2508d9030901cfc0a858198009f7e5ccd931fbbac0e7f191b7b7050a631a9cd2 (addiitonal event emitted: TransferOwnership)
+Purchased - https://ropsten.etherscan.io/tx/0xcb6ffd7fb5436df78f9e37e574ee968355332da0453c9e66a06d54721838187a (addiitonal event emitted: TransferOwnership)
