@@ -10,6 +10,17 @@ Details on -
 
 can be found in the UML diagrams inside the uml/ folder under the project root.
 
+## Operating the web app
+
+1. Add each of the 4 addresses - farmer, distributor, retailer, consumer - preferably using the contract owner address in Metamask to sign this transaction
+2. Fetch the details and supply chain state of any UPC, which is a strictly positive integer only at this point, with a maximum possible value of (2^256 - 1)
+3. To add a new UPC to the supply chain, enter the UPC value, select the farmer's account from Metamask, change any of the other product attributes and click on 'Harvest'
+4. The only allowed order of operations is -
+  1. Harvest > Process > Pack > ForSale (by farmer role only), then
+  2. Buy > Ship (by distributor role only), then
+  3. Receive (by retailer role only), then
+  4. Purchase (by consumer role only)
+
 ## Versions of various packages
 ```
 $ truffle version
